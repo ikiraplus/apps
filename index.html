@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>برامج بلس</title>
+  <title>تطبيقات بلس</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     @font-face { font-family:'STC'; src:local('STC Bold'),local('STC-Bold'); font-weight:700; }
@@ -208,32 +208,92 @@
       font-family:'STC','Cairo',sans-serif; font-weight:700; cursor:pointer;
       margin-bottom:6px; transition:all 0.2s ease;
     }
-    .tip-toggle-btn:hover { background:rgba(13,148,136,0.14); }
-    .tip-toggle-btn .tip-arrow { display:inline-block; transition:transform 0.3s ease; font-style:normal; }
+    .tip-toggle-btn:hover { background:rgba(13,148,136,0.18); transform:translateY(-1px); box-shadow:0 3px 10px rgba(13,148,136,0.2); }
+    .tip-toggle-btn:active { transform:scale(0.93); }
+    .tip-toggle-btn .tip-arrow { display:inline-block; transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1); font-style:normal; }
     .tip-toggle-btn.open .tip-arrow { transform:rotate(180deg); }
 
-    /* INSTALL BTN */
+    /* ===== INSTALL BTN ===== */
     .install-btn {
       display:flex; align-items:center; justify-content:center; width:100%;
       background:linear-gradient(135deg,var(--primary-color),var(--secondary-color));
       color:#fff; padding:8px 6px; border-radius:10px;
-      font-size:13px; font-weight:900; box-shadow:0 4px 12px rgba(13,148,136,0.25);
-      transition:all 0.2s ease; cursor:pointer; margin-top:auto; border:none;
-      position:relative; gap:8px; font-family:'STC','Cairo',sans-serif;
+      font-size:13px; font-weight:900;
+      box-shadow:0 4px 12px rgba(13,148,136,0.25);
+      transition:transform 0.25s cubic-bezier(0.34,1.56,0.64,1),
+                 box-shadow 0.25s ease, background 0.3s ease;
+      cursor:pointer; margin-top:auto; border:none;
+      position:relative; overflow:hidden; gap:8px;
+      font-family:'STC','Cairo',sans-serif;
     }
-    .install-btn:hover { box-shadow:0 6px 18px rgba(13,148,136,0.35); transform:translateY(-2px); }
-    .install-btn:active { transform:scale(0.95); }
-    .install-btn.success { background:linear-gradient(135deg,#059669,#10b981); box-shadow:0 4px 12px rgba(5,150,105,0.3); pointer-events:none; }
+
+    /* shimmer sweep on hover */
+    .install-btn::before {
+      content:''; position:absolute; top:0; left:-75%;
+      width:50%; height:100%;
+      background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0.28) 50%,rgba(255,255,255,0) 100%);
+      transform:skewX(-18deg);
+      transition:left 0s;
+      pointer-events:none;
+    }
+    .install-btn:hover::before { left:130%; transition:left 0.45s ease; }
+
+    /* ripple pseudo on active */
+    .install-btn::after {
+      content:''; position:absolute;
+      border-radius:50%; background:rgba(255,255,255,0.35);
+      width:0; height:0; top:50%; left:50%;
+      transform:translate(-50%,-50%) scale(0);
+      opacity:0; pointer-events:none;
+    }
+    .install-btn.ripple::after {
+      animation:btnRipple 0.55s ease-out forwards;
+    }
+    @keyframes btnRipple {
+      0%   { width:0; height:0; opacity:0.7; transform:translate(-50%,-50%) scale(0); }
+      80%  { opacity:0.15; }
+      100% { width:180px; height:180px; opacity:0; transform:translate(-50%,-50%) scale(1); }
+    }
+
+    .install-btn:hover {
+      box-shadow:0 8px 22px rgba(13,148,136,0.42);
+      transform:translateY(-3px) scale(1.02);
+    }
+    .install-btn:active { transform:scale(0.93) translateY(1px); }
+
+    .install-btn.success {
+      background:linear-gradient(135deg,#059669,#10b981);
+      box-shadow:0 4px 14px rgba(5,150,105,0.35);
+      pointer-events:none;
+      animation:successPop 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes successPop {
+      0%  { transform:scale(0.92); }
+      60% { transform:scale(1.06); }
+      100%{ transform:scale(1); }
+    }
+
     .btn-check { display:none; width:16px; height:16px; }
-    .install-btn.success .btn-check { display:block; animation:checkPop 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+    .install-btn.success .btn-check { display:block; animation:checkPop 0.45s cubic-bezier(0.34,1.56,0.64,1); }
     .install-btn.success .btn-text { display:none; }
     .install-btn.success .loading-spinner { display:none !important; }
-    @keyframes checkPop { from{transform:scale(0) rotate(-30deg);opacity:0} to{transform:scale(1) rotate(0);opacity:1} }
-    .loading-spinner { display:none; width:14px; height:14px; border:2px solid rgba(255,255,255,0.3); border-top:2px solid white; border-radius:50%; animation:spin 0.8s linear infinite; }
+    @keyframes checkPop { from{transform:scale(0) rotate(-45deg);opacity:0} to{transform:scale(1) rotate(0);opacity:1} }
+
+    .loading-spinner {
+      display:none; width:14px; height:14px;
+      border:2px solid rgba(255,255,255,0.3); border-top:2px solid white;
+      border-radius:50%; animation:spin 0.7s linear infinite;
+    }
     .install-btn.loading .loading-spinner { display:inline-block; }
-    .install-btn.loading .btn-text { opacity:0.7; }
+    .install-btn.loading .btn-text { opacity:0.65; }
+    .install-btn.loading { animation:loadingPulse 1.2s ease-in-out infinite; }
+    @keyframes loadingPulse {
+      0%,100%{ box-shadow:0 4px 12px rgba(13,148,136,0.25); }
+      50%    { box-shadow:0 4px 22px rgba(13,148,136,0.55); }
+    }
     @keyframes spin { to{transform:rotate(360deg)} }
 
+    /* ===== TELEGRAM BTN ENHANCED ===== */
     /* NOTE CARD */
     .note-card {
       padding:16px; background:linear-gradient(135deg,rgba(240,253,250,0.8),rgba(45,212,191,0.05));
@@ -250,10 +310,51 @@
       display:inline-flex; align-items:center; justify-content:center; gap:8px;
       background:var(--card-bg); border:2px solid var(--primary-color); color:var(--primary-color);
       padding:12px 20px; border-radius:12px; text-decoration:none; font-size:14px; font-weight:700;
-      box-shadow:0 4px 15px rgba(13,148,136,0.15); transition:all 0.3s ease; width:100%;
+      box-shadow:0 4px 15px rgba(13,148,136,0.15);
+      transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1),
+                 box-shadow 0.3s ease, background 0.3s ease,
+                 color 0.3s ease, border-color 0.3s ease;
+      width:100%; position:relative; overflow:hidden;
     }
-    .telegram-text-btn:hover { background:rgba(13,148,136,0.05); transform:translateY(-2px); }
-    .telegram-text-btn:active { transform:scale(0.97); }
+
+    /* Dark fill overlay - hidden by default */
+    .telegram-text-btn::before {
+      content:''; position:absolute; inset:0;
+      background:#0a1a1a;
+      border-radius:10px;
+      opacity:0;
+      transition:opacity 0.25s ease;
+      pointer-events:none;
+      z-index:0;
+    }
+
+    /* Text wrapper stays above overlay */
+    .telegram-text-btn > * { position:relative; z-index:1; }
+
+    /* Hover: slight lift */
+    .telegram-text-btn:hover {
+      transform:translateY(-2px);
+      box-shadow:0 8px 24px rgba(13,148,136,0.28);
+    }
+
+    /* Active/touched: go dark, text disappears */
+    .telegram-text-btn:active::before,
+    .telegram-text-btn.pressed::before { opacity:1; }
+
+    .telegram-text-btn:active,
+    .telegram-text-btn.pressed {
+      transform:scale(0.97);
+      border-color:#0a1a1a;
+      box-shadow:0 2px 8px rgba(0,0,0,0.4);
+      color:transparent;
+    }
+
+    /* Smooth return animation after release */
+    .telegram-text-btn.releasing {
+      transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1),
+                 box-shadow 0.4s ease, background 0.4s ease,
+                 color 0.4s ease, border-color 0.4s ease;
+    }
 
     /* DEVELOPER CREDIT */
     .developer-credit {
@@ -557,6 +658,16 @@
     });
 
     document.querySelectorAll('.install-btn').forEach(btn => {
+      // Ripple on every touch/click
+      function triggerRipple() {
+        btn.classList.remove('ripple');
+        void btn.offsetWidth; // reflow
+        btn.classList.add('ripple');
+        setTimeout(() => btn.classList.remove('ripple'), 600);
+      }
+      btn.addEventListener('touchstart', triggerRipple, {passive:true});
+      btn.addEventListener('mousedown', triggerRipple);
+
       btn.addEventListener('click', function(e) {
         e.preventDefault();
         if (this.disabled) return;
@@ -569,6 +680,34 @@
         }, 3000);
       });
     });
+
+    // Ripple on tip toggle buttons too
+    document.querySelectorAll('.tip-toggle-btn').forEach(btn => {
+      btn.addEventListener('touchstart', function() {
+        this.style.transform = 'scale(0.92)';
+        setTimeout(() => { this.style.transform = ''; }, 180);
+      }, {passive:true});
+    });
+
+    // Telegram btn — dark on touch, bounce back on release
+    const tgBtn = document.querySelector('.telegram-text-btn');
+    if (tgBtn) {
+      function tgPress() {
+        tgBtn.classList.remove('releasing');
+        tgBtn.classList.add('pressed');
+      }
+      function tgRelease() {
+        tgBtn.classList.remove('pressed');
+        tgBtn.classList.add('releasing');
+        setTimeout(() => tgBtn.classList.remove('releasing'), 450);
+      }
+      tgBtn.addEventListener('touchstart', tgPress,   {passive:true});
+      tgBtn.addEventListener('touchend',   tgRelease, {passive:true});
+      tgBtn.addEventListener('touchcancel',tgRelease, {passive:true});
+      tgBtn.addEventListener('mousedown',  tgPress);
+      tgBtn.addEventListener('mouseup',    tgRelease);
+      tgBtn.addEventListener('mouseleave', tgRelease);
+    }
   </script>
 </body>
 </html>
