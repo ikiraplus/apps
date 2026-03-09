@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>تطبيقات بلس</title>
+  <title>برامج بلس</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     @font-face { font-family:'STC'; src:local('STC Bold'),local('STC-Bold'); font-weight:700; }
@@ -107,7 +107,7 @@
     .header-card::before {
       content:''; position:absolute; inset:-4px; border-radius:23px;
       border:2px solid rgba(45,212,191,.2);
-      animation:ringPulse 3s ease-in-out infinite;
+      animation:ringPulse 4s ease-in-out infinite;
       pointer-events:none;
     }
     @keyframes ringPulse {
@@ -151,7 +151,7 @@
     .status-dot {
       width:8px; height:8px; border-radius:50%;
       background:#4ade80; flex-shrink:0;
-      animation:dotPulse 2s ease-in-out infinite;
+      animation:dotPulse 3s ease-in-out infinite;
     }
     @keyframes dotPulse {
       0%  { box-shadow:0 0 0 0 rgba(74,222,128,.65); }
@@ -616,12 +616,12 @@ window.addEventListener('resize', () => { bCanvas.width = window.innerWidth; bCa
 
 const bursts = [];
 function spawnBurst(x, y, col) {
-  const count = 22;
+  const count = 10; // تقليل من 22 إلى 10
   for (let i = 0; i < count; i++) {
     const angle = (Math.PI * 2 / count) * i + Math.random() * .4;
-    const speed = Math.random() * 5 + 2.5;
+    const speed = Math.random() * 4 + 2; // تقليل السرعة قليلاً
     bursts.push({ x, y, vx: Math.cos(angle)*speed, vy: Math.sin(angle)*speed,
-                  r: Math.random()*4+2, life:1, col });
+                  r: Math.random()*3+1.5, life:1, col }); // تقليل حجم الجزيء
   }
 }
 (function burstLoop() {
@@ -641,19 +641,20 @@ function spawnBurst(x, y, col) {
 /* ═══════════════════════════════════════════════
    3.  SPOTLIGHT  (mouse / touch follow)
 ═══════════════════════════════════════════════ */
-const spotlight = document.getElementById('spotlight');
-let spTimer;
-function moveSpotlight(x, y) {
-  spotlight.style.left = x + 'px';
-  spotlight.style.top  = y + 'px';
-  spotlight.style.opacity = '1';
-  clearTimeout(spTimer);
-  spTimer = setTimeout(() => spotlight.style.opacity = '0', 1800);
-}
-document.addEventListener('mousemove', e => moveSpotlight(e.clientX, e.clientY));
-document.addEventListener('touchmove', e => {
-  const t = e.touches[0]; moveSpotlight(t.clientX, t.clientY);
-}, { passive: true });
+// Spotlight معطّل لتحسين الأداء
+// const spotlight = document.getElementById('spotlight');
+// let spTimer;
+// function moveSpotlight(x, y) {
+//   spotlight.style.left = x + 'px';
+//   spotlight.style.top  = y + 'px';
+//   spotlight.style.opacity = '1';
+//   clearTimeout(spTimer);
+//   spTimer = setTimeout(() => spotlight.style.opacity = '0', 1800);
+// }
+// document.addEventListener('mousemove', e => moveSpotlight(e.clientX, e.clientY));
+// document.addEventListener('touchmove', e => {
+//   const t = e.touches[0]; moveSpotlight(t.clientX, t.clientY);
+// }, { passive: true });
 
 /* ═══════════════════════════════════════════════
    4.  RIPPLE  – on every button click
@@ -674,12 +675,13 @@ document.querySelectorAll('button, a.channel-row, a.telegram-text-btn, .status-b
 });
 
 /* ═══════════════════════════════════════════════
-   5.  INTERSECTION OBSERVER  – scroll-reveal
+   5.  INTERSECTION OBSERVER  – scroll-reveal محسّن
 ═══════════════════════════════════════════════ */
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
     if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), i * 60);
+      // تقليل التأخير من 60ms إلى 20ms
+      setTimeout(() => entry.target.classList.add('visible'), i * 20);
       observer.unobserve(entry.target);
     }
   });
@@ -688,23 +690,21 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.app-card, .note-card, .telegram-wrap, .developer-credit').forEach(el => observer.observe(el));
 
 /* ═══════════════════════════════════════════════
-   6.  MAGNETIC CARD HOVER  (desktop)
+   6.  SIMPLE CARD HOVER (محسّن - بدون 3D)
 ═══════════════════════════════════════════════ */
 document.querySelectorAll('.app-card').forEach(card => {
+  // تأثير بسيط بدون 3D transforms
   card.addEventListener('mousemove', e => {
     const r    = card.getBoundingClientRect();
-    const cx   = r.left + r.width  / 2;
-    const cy   = r.top  + r.height / 2;
-    const dx   = (e.clientX - cx) / (r.width  / 2);
-    const dy   = (e.clientY - cy) / (r.height / 2);
-    card.style.transform = `translateY(-5px) scale(1.02) rotateY(${dx*5}deg) rotateX(${-dy*4}deg)`;
+    // تأثير مبسط - رفع الكارت فقط
+    card.style.transform = `translateY(-8px) scale(1.01)`;
   });
   card.addEventListener('mouseleave', () => {
     card.style.transform = '';
-    card.style.transition = 'transform .45s cubic-bezier(.34,1.56,.64,1), box-shadow .28s ease, border-color .28s ease, background .45s ease';
+    card.style.transition = 'transform .28s ease, box-shadow .28s ease';
   });
   card.addEventListener('mouseenter', () => {
-    card.style.transition = 'transform .12s ease, box-shadow .28s ease, border-color .28s ease';
+    card.style.transition = 'transform .12s ease, box-shadow .28s ease';
   });
 });
 
@@ -786,12 +786,13 @@ function showToast(msg) {
 ═══════════════════════════════════════════════ */
 function launchConfetti(x, y) {
   const colors = ['#0d9488','#2dd4bf','#14b8a6','#ffffff','#a7f3d0'];
-  for (let i = 0; i < 28; i++) {
+  // تقليل من 28 جزء إلى 12 فقط
+  for (let i = 0; i < 12; i++) {
     const dot  = document.createElement('div');
     dot.className = 'confetti-dot';
-    const size = Math.random() * 8 + 4;
+    const size = Math.random() * 6 + 3;
     const angle = Math.random() * Math.PI * 2;
-    const dist  = Math.random() * 120 + 60;
+    const dist  = Math.random() * 80 + 40;
     dot.style.cssText = `
       width:${size}px; height:${size}px;
       background:${colors[Math.floor(Math.random()*colors.length)]};
@@ -799,7 +800,7 @@ function launchConfetti(x, y) {
       --tx:${Math.cos(angle)*dist}px;
       --ty:${Math.sin(angle)*dist - 80}px;
       --rot:${Math.random()*720 - 360}deg;
-      animation-duration:${Math.random()*.5+.6}s;
+      animation-duration:${Math.random()*.4+.5}s;
     `;
     document.body.appendChild(dot);
     dot.addEventListener('animationend', () => dot.remove());
