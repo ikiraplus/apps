@@ -179,21 +179,25 @@
     }
 
     .app-icon {
-      width: 65px;
-      height: 65px;
+      width: 60px;
+      height: 60px;
       margin: 0 auto 10px;
       border-radius: 16px;
       box-shadow: 0 6px 15px rgba(13, 148, 136, 0.1);
       overflow: hidden;
       background: linear-gradient(135deg, rgba(13, 148, 136, 0.05), rgba(45, 212, 191, 0.05));
       border: 1px solid rgba(45, 212, 191, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .app-icon img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       display: block;
+      padding: 8px;
     }
 
     .app-name {
@@ -245,6 +249,8 @@
       cursor: pointer;
       margin-top: auto; /* لضمان بقاء الزر بالأسفل */
       border: none;
+      position: relative;
+      gap: 8px;
     }
 
     .install-btn:hover {
@@ -254,6 +260,29 @@
     
     .install-btn:active {
       transform: scale(0.95);
+    }
+
+    /* أيقونة التحميل */
+    .loading-spinner {
+      display: none;
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top: 2px solid white;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    .install-btn.loading .loading-spinner {
+      display: inline-block;
+    }
+
+    .install-btn.loading .btn-text {
+      opacity: 0.7;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
 
     /* ===== NOTE / FOOTER ===== */
@@ -388,9 +417,10 @@
         <div class="app-name">سينمانا كيرا</div>
         <div class="app-note"></div>
         <div class="app-warning">اذا ظهرت لك ملاحظة غير مشترك او لم يفتح معك التطبيق قم بأطفاء الـ VPN واجعل الـ DNS تلقائي</div>
-        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-cinemana.plist" ontouchstart="">
-          تثبيت
-        </a>
+        <button class="install-btn" data-url="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-cinemana.plist">
+          <span class="loading-spinner"></span>
+          <span class="btn-text">تثبيت</span>
+        </button>
       </div>
 
       <div class="app-card">
@@ -400,9 +430,10 @@
         <div class="app-name">ريكرام</div>
         <div class="app-note"></div>
         <div class="app-warning">اذا كانت المميزات مقفلة فقط قم بتغيير لغة التطبيق من الإنكليزي إلى العربي او بالعكس واعد تشغيل التطبيق</div>
-        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-regram.plist" ontouchstart="">
-          تثبيت
-        </a>
+        <button class="install-btn" data-url="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-regram.plist">
+          <span class="loading-spinner"></span>
+          <span class="btn-text">تثبيت</span>
+        </button>
       </div>
 
       <div class="app-card">
@@ -412,9 +443,10 @@
         <div class="app-name">واتساب كولد</div>
         <div class="app-note"></div>
         <div class="app-warning">اذا اردت استخدام النسخه بشكل ثانوي بجانب الاساسية قم بالتسجيل بها عن طريق خيار ( الربط كجهاز مصاحب )</div>
-        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-whatsappgold.plist" ontouchstart="">
-          تثبيت
-        </a>
+        <button class="install-btn" data-url="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-whatsappgold.plist">
+          <span class="loading-spinner"></span>
+          <span class="btn-text">تثبيت</span>
+        </button>
       </div>
 
       <div class="app-card">
@@ -424,9 +456,10 @@
         <div class="app-name">تيلكرام بلس</div>
         <div class="app-note"></div>
         <div class="app-warning">لتفعيل مميزات النسخه اذهب الى - اعدادات التليكرام - اضغط على أيقونة ( اسأل سوالاً ) ضغطه مطوله وستفتح معك المميزات</div>
-        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-telegramplus.plist" ontouchstart="">
-          تثبيت
-        </a>
+        <button class="install-btn" data-url="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-telegramplus.plist">
+          <span class="loading-spinner"></span>
+          <span class="btn-text">تثبيت</span>
+        </button>
       </div>
 
       <div class="app-card">
@@ -435,9 +468,10 @@
         </div>
         <div class="app-name">تيك توك بلس</div>
         <div class="app-note"></div>
-        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-tiktokplus.plist" ontouchstart="">
-          تثبيت
-        </a>
+        <button class="install-btn" data-url="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-tiktokplus.plist">
+          <span class="loading-spinner"></span>
+          <span class="btn-text">تثبيت</span>
+        </button>
       </div>
 
       <div class="app-card">
@@ -446,9 +480,10 @@
         </div>
         <div class="app-name">يوتيوب بلس</div>
         <div class="app-note"></div>
-        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-youtubeplus.plist" ontouchstart="">
-          تثبيت
-        </a>
+        <button class="install-btn" data-url="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-youtubeplus.plist">
+          <span class="loading-spinner"></span>
+          <span class="btn-text">تثبيت</span>
+        </button>
       </div>
 
       <div class="app-card">
@@ -457,9 +492,10 @@
         </div>
         <div class="app-name">air movie</div>
         <div class="app-note"></div>
-        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-airmovie.plist" ontouchstart="">
-          تثبيت
-        </a>
+        <button class="install-btn" data-url="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-airmovie.plist">
+          <span class="loading-spinner"></span>
+          <span class="btn-text">تثبيت</span>
+        </button>
       </div>
 
       <div class="app-card">
@@ -468,9 +504,10 @@
         </div>
         <div class="app-name">hitv pro</div>
         <div class="app-note"></div>
-        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-hitv.plist" ontouchstart="">
-          تثبيت
-        </a>
+        <button class="install-btn" data-url="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-hitv.plist">
+          <span class="loading-spinner"></span>
+          <span class="btn-text">تثبيت</span>
+        </button>
       </div>
 
       <div class="app-card">
@@ -479,9 +516,10 @@
         </div>
         <div class="app-name">Remini pro</div>
         <div class="app-note"></div>
-        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-reminiplus.plist" ontouchstart="">
-          تثبيت
-        </a>
+        <button class="install-btn" data-url="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-reminiplus.plist">
+          <span class="loading-spinner"></span>
+          <span class="btn-text">تثبيت</span>
+        </button>
       </div>
 
     </div>
@@ -560,6 +598,29 @@
       requestAnimationFrame(draw);
     }
     draw();
+
+    /* ===== INSTALL BUTTON HANDLER ===== */
+    document.querySelectorAll('.install-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // إضافة الـ loading class فوراً
+        this.classList.add('loading');
+        this.disabled = true;
+        
+        // الانتظار قليلاً قبل فتح الرابط
+        const url = this.getAttribute('data-url');
+        setTimeout(() => {
+          window.location.href = url;
+        }, 100);
+        
+        // إزالة الـ loading بعد 3 ثواني
+        setTimeout(() => {
+          this.classList.remove('loading');
+          this.disabled = false;
+        }, 3000);
+      });
+    });
   </script>
 </body>
 </html>
