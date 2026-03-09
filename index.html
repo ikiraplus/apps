@@ -211,6 +211,20 @@
       text-align: center;
     }
 
+    /* الملاحظة الصفراء الجديدة */
+    .app-warning {
+      font-size: 11px;
+      color: var(--note-text);
+      background: var(--note-bg);
+      border: 1px solid var(--note-border);
+      border-radius: 8px;
+      padding: 8px 6px;
+      margin-bottom: 10px;
+      line-height: 1.4;
+      font-weight: 700;
+      text-align: right;
+    }
+
     .install-btn {
       display: flex;
       align-items: center;
@@ -296,6 +310,53 @@
       transform: scale(0.97);
     }
 
+    /* ===== DEVELOPER CREDIT ===== */
+    .developer-credit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(0,0,0,0.03);
+      margin-top: 10px;
+      animation: cardAppear 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+      animation-delay: 1.2s;
+    }
+
+    .developer-credit a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+
+    .developer-credit img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .developer-credit-text {
+      font-size: 12px;
+      color: var(--text-dark);
+      font-weight: 700;
+    }
+
+    .developer-credit a:hover {
+      transform: translateY(-2px);
+    }
+
+    .developer-credit a:hover .developer-credit-text {
+      color: var(--primary-color);
+    }
+
   </style>
 </head>
 <body>
@@ -310,7 +371,7 @@
       
       <a href="https://t.me/ikiraplus" target="_blank" class="channel-row">
         <img class="channel-avatar" src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
-        <span class="channel-name">كيرا بلس - @iKiraPlus</span>
+        <span class="channel-name">@iKiraPlus - كيرا بلس</span>
       </a>
     </div>
 
@@ -322,6 +383,7 @@
         </div>
         <div class="app-name">سينمانا كيرا</div>
         <div class="app-note"></div>
+        <div class="app-warning">اذا ظهرت لك ملاحظة غير مشترك او لم يفتح معك التطبيق قم بأطفاء الـ VPN واجعل الـ DNS تلقائي</div>
         <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-cinemana.plist">
           تثبيت
         </a>
@@ -333,6 +395,7 @@
         </div>
         <div class="app-name">ريكرام</div>
         <div class="app-note"></div>
+        <div class="app-warning">اذا كانت المميزات مقفلة فقط قم بتغيير لغة التطبيق من الإنكليزي إلى العربي او بالعكس واعد تشغيل التطبيق</div>
         <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-regram.plist">
           تثبيت
         </a>
@@ -344,6 +407,7 @@
         </div>
         <div class="app-name">واتساب كولد</div>
         <div class="app-note"></div>
+        <div class="app-warning">اذا اردت استخدام النسخه بشكل ثانوي بجانب الاساسية قم بالتسجيل بها عن طريق خيار ( الربط كجهاز مصاحب )</div>
         <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-whatsappgold.plist">
           تثبيت
         </a>
@@ -355,6 +419,7 @@
         </div>
         <div class="app-name">تيلكرام بلس</div>
         <div class="app-note"></div>
+        <div class="app-warning">لتفعيل مميزات النسخه اذهب الى - اعدادات التليكرام - اضغط على أيقونة ( اسأل سوالاً ) ضغطه مطوله وستفتح معك المميزات</div>
         <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-telegramplus.plist">
           تثبيت
         </a>
@@ -426,6 +491,13 @@
     <div class="telegram-wrap">
       <a class="telegram-text-btn" href="https://t.me/ikiraplus" target="_blank">
         💬 اذا واجهتك مشكلة تواصل معي هنا
+      </a>
+    </div>
+
+    <div class="developer-credit">
+      <a href="https://t.me/iDyala" target="_blank">
+        <img src="https://img.sanishtech.com/u/57e1eef31c9ea0888ebdb360cd37f2a1.jpeg" alt="د. ديالا يوسف">
+        <span class="developer-credit-text">تطوير وتعديل : د. ديالا يوسف</span>
       </a>
     </div>
 
