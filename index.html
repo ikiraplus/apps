@@ -16,15 +16,16 @@
     }
 
     :root {
-      --primary-color: #007aff;
-      --secondary-color: #005bb5;
-      --bg-light: #f4f7f9;
+      --primary-color: #0d9488;
+      --secondary-color: #14b8a6;
+      --accent-color: #2dd4bf;
+      --bg-light: #f0fdfa;
       --card-bg: #ffffff;
       --text-dark: #1c1c1e;
       --text-muted: #636366;
-      --note-bg: #fff9e6;
-      --note-border: #ffcc00;
-      --note-text: #8a6d00;
+      --note-bg: #f0fdfa;
+      --note-border: #14b8a6;
+      --note-text: #0d7377;
     }
 
     * {
@@ -76,28 +77,29 @@
 
     /* ===== HEADER CARD ===== */
     .header-card {
-      background: var(--card-bg);
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       border-radius: 20px;
-      padding: 20px 16px;
+      padding: 8px 14px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
-      border: 1px solid rgba(0,0,0,0.03);
+      box-shadow: 0 10px 30px rgba(13, 148, 136, 0.15), 0 1px 3px rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(45, 212, 191, 0.2);
       animation: cardAppear 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
     }
 
     .header-card h1 {
-      color: var(--text-dark);
-      font-size: clamp(16px, 4.5vw, 19px);
-      margin-bottom: 6px;
+      color: #ffffff;
+      font-size: clamp(12px, 3.2vw, 15px);
+      margin-bottom: 2px;
       letter-spacing: -0.5px;
+      line-height: 1.2;
     }
 
     .subtitle-line {
       width: 40px;
       height: 3px;
-      background: var(--primary-color);
+      background: rgba(255, 255, 255, 0.6);
       border-radius: 2px;
-      margin: 10px auto 16px;
+      margin: 4px auto 6px;
     }
 
     /* أزرار الهيدر */
@@ -105,8 +107,8 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: #f8f9fa;
-      border: 1px solid rgba(0,0,0,0.05);
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: 50px;
       padding: 6px 14px;
       text-decoration: none; /* إزالة خط الرابط */
@@ -115,7 +117,7 @@
     }
 
     .channel-row:hover {
-      background: rgba(0, 122, 255, 0.08);
+      background: rgba(255, 255, 255, 0.3);
       transform: translateY(-2px);
     }
 
@@ -124,11 +126,12 @@
       height: 28px;
       border-radius: 50%;
       object-fit: cover;
+      background: rgba(255, 255, 255, 0.2);
     }
 
     .channel-name {
-      color: var(--primary-color);
-      font-size: 13px;
+      color: #ffffff;
+      font-size: 12px;
       font-weight: 900;
     }
 
@@ -149,10 +152,10 @@
     .app-card {
       background: var(--card-bg);
       border-radius: 16px;
-      padding: 16px 10px 14px;
+      padding: 12px 10px 10px;
       text-align: center;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
-      border: 1px solid rgba(0,0,0,0.03);
+      box-shadow: 0 8px 20px rgba(13, 148, 136, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02);
+      border: 1px solid rgba(45, 212, 191, 0.15);
       animation: cardAppear 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
       display: flex;
       flex-direction: column;
@@ -180,10 +183,10 @@
       height: 65px;
       margin: 0 auto 10px;
       border-radius: 16px;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 6px 15px rgba(13, 148, 136, 0.1);
       overflow: hidden;
-      background: #fff;
-      border: 1px solid rgba(0,0,0,0.05);
+      background: linear-gradient(135deg, rgba(13, 148, 136, 0.05), rgba(45, 212, 191, 0.05));
+      border: 1px solid rgba(45, 212, 191, 0.2);
     }
 
     .app-icon img {
@@ -197,14 +200,14 @@
       color: var(--text-dark);
       font-size: 14px;
       font-weight: 900;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     /* الملاحظة الصغيرة أسفل التطبيق */
     .app-note {
       font-size: 10px;
       color: var(--text-muted);
-      margin-bottom: 10px;
+      margin-bottom: 6px;
       line-height: 1.5;
       font-weight: 700;
       padding: 0 4px;
@@ -215,11 +218,11 @@
     .app-warning {
       font-size: 11px;
       color: var(--note-text);
-      background: var(--note-bg);
+      background: rgba(13, 148, 136, 0.08);
       border: 1px solid var(--note-border);
       border-radius: 8px;
       padding: 8px 6px;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
       line-height: 1.4;
       font-weight: 700;
       text-align: right;
@@ -237,25 +240,26 @@
       text-decoration: none;
       font-size: 13px;
       font-weight: 900;
-      box-shadow: 0 4px 12px rgba(0, 122, 255, 0.2);
-      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(13, 148, 136, 0.25);
+      transition: all 0.15s ease;
       cursor: pointer;
       margin-top: auto; /* لضمان بقاء الزر بالأسفل */
+      border: none;
     }
 
     .install-btn:hover {
-      box-shadow: 0 6px 18px rgba(0, 122, 255, 0.3);
+      box-shadow: 0 6px 18px rgba(13, 148, 136, 0.35);
       transform: translateY(-2px);
     }
     
     .install-btn:active {
-      transform: scale(0.97);
+      transform: scale(0.95);
     }
 
     /* ===== NOTE / FOOTER ===== */
     .note-card {
       padding: 16px;
-      background: var(--note-bg);
+      background: linear-gradient(135deg, rgba(240, 253, 250, 0.8), rgba(45, 212, 191, 0.05));
       border: 1px solid var(--note-border);
       border-radius: 12px;
       font-size: 13px;
@@ -267,7 +271,7 @@
     }
 
     .note-card strong {
-      color: #d4a000;
+      color: var(--primary-color);
       font-size: 14px;
       font-weight: 900;
       display: block;
@@ -289,20 +293,20 @@
       justify-content: center;
       gap: 8px;
       background: var(--card-bg);
-      border: 1px solid var(--primary-color);
+      border: 2px solid var(--primary-color);
       color: var(--primary-color);
       padding: 12px 20px;
       border-radius: 12px;
       text-decoration: none;
       font-size: 14px;
       font-weight: 700;
-      box-shadow: 0 4px 15px rgba(0, 122, 255, 0.1);
+      box-shadow: 0 4px 15px rgba(13, 148, 136, 0.15);
       transition: all 0.2s ease;
       width: 100%;
     }
 
     .telegram-text-btn:hover {
-      background: rgba(0, 122, 255, 0.05);
+      background: rgba(13, 148, 136, 0.05);
       transform: translateY(-2px);
     }
     
@@ -319,8 +323,8 @@
       padding: 12px 16px;
       background: var(--card-bg);
       border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
-      border: 1px solid rgba(0,0,0,0.03);
+      box-shadow: 0 4px 15px rgba(13, 148, 136, 0.1);
+      border: 1px solid rgba(45, 212, 191, 0.15);
       margin-top: 10px;
       animation: cardAppear 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
       animation-delay: 1.2s;
@@ -371,7 +375,7 @@
       
       <a href="https://t.me/ikiraplus" target="_blank" class="channel-row">
         <img class="channel-avatar" src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
-        <span class="channel-name">@iKiraPlus - كيرا بلس</span>
+        <span class="channel-name">كيرا بلس - iKiraPlus</span>
       </a>
     </div>
 
@@ -384,7 +388,7 @@
         <div class="app-name">سينمانا كيرا</div>
         <div class="app-note"></div>
         <div class="app-warning">اذا ظهرت لك ملاحظة غير مشترك او لم يفتح معك التطبيق قم بأطفاء الـ VPN واجعل الـ DNS تلقائي</div>
-        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-cinemana.plist">
+        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-cinemana.plist" ontouchstart="">
           تثبيت
         </a>
       </div>
@@ -396,7 +400,7 @@
         <div class="app-name">ريكرام</div>
         <div class="app-note"></div>
         <div class="app-warning">اذا كانت المميزات مقفلة فقط قم بتغيير لغة التطبيق من الإنكليزي إلى العربي او بالعكس واعد تشغيل التطبيق</div>
-        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-regram.plist">
+        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-regram.plist" ontouchstart="">
           تثبيت
         </a>
       </div>
@@ -408,7 +412,7 @@
         <div class="app-name">واتساب كولد</div>
         <div class="app-note"></div>
         <div class="app-warning">اذا اردت استخدام النسخه بشكل ثانوي بجانب الاساسية قم بالتسجيل بها عن طريق خيار ( الربط كجهاز مصاحب )</div>
-        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-whatsappgold.plist">
+        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-whatsappgold.plist" ontouchstart="">
           تثبيت
         </a>
       </div>
@@ -420,7 +424,7 @@
         <div class="app-name">تيلكرام بلس</div>
         <div class="app-note"></div>
         <div class="app-warning">لتفعيل مميزات النسخه اذهب الى - اعدادات التليكرام - اضغط على أيقونة ( اسأل سوالاً ) ضغطه مطوله وستفتح معك المميزات</div>
-        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-telegramplus.plist">
+        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-telegramplus.plist" ontouchstart="">
           تثبيت
         </a>
       </div>
@@ -431,7 +435,7 @@
         </div>
         <div class="app-name">تيك توك بلس</div>
         <div class="app-note"></div>
-        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-tiktokplus.plist">
+        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-tiktokplus.plist" ontouchstart="">
           تثبيت
         </a>
       </div>
@@ -442,7 +446,7 @@
         </div>
         <div class="app-name">يوتيوب بلس</div>
         <div class="app-note"></div>
-        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-youtubeplus.plist">
+        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-youtubeplus.plist" ontouchstart="">
           تثبيت
         </a>
       </div>
@@ -453,7 +457,7 @@
         </div>
         <div class="app-name">air movie</div>
         <div class="app-note"></div>
-        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-airmovie.plist">
+        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-airmovie.plist" ontouchstart="">
           تثبيت
         </a>
       </div>
@@ -464,7 +468,7 @@
         </div>
         <div class="app-name">hitv pro</div>
         <div class="app-note"></div>
-        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-hitv.plist">
+        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-hitv.plist" ontouchstart="">
           تثبيت
         </a>
       </div>
@@ -475,7 +479,7 @@
         </div>
         <div class="app-name">Remini pro</div>
         <div class="app-note"></div>
-        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-reminiplus.plist">
+        <a class="install-btn" href="itms-services://?action=download-manifest&url=https://ikiraplus.github.io/apps/manifest-reminiplus.plist" ontouchstart="">
           تثبيت
         </a>
       </div>
@@ -527,8 +531,8 @@
         this.life = Math.random();
         this.maxLife = Math.random() * 0.01 + 0.005;
         this.color = Math.random() > 0.5 
-          ? `rgba(0, 122, 255, ${Math.random() * 0.1 + 0.05})` 
-          : `rgba(100, 150, 200, ${Math.random() * 0.1 + 0.05})`;
+          ? `rgba(13, 148, 136, ${Math.random() * 0.1 + 0.05})` 
+          : `rgba(20, 184, 166, ${Math.random() * 0.1 + 0.05})`;
       }
       update() {
         this.x += this.speedX;
@@ -550,7 +554,7 @@
     init();
 
     function draw() {
-      ctx.fillStyle = 'rgba(244, 247, 249, 0.4)';
+      ctx.fillStyle = 'rgba(240, 253, 250, 0.4)';
       ctx.fillRect(0, 0, W, H);
       particles.forEach(p => { p.update(); p.draw(); });
       requestAnimationFrame(draw);
