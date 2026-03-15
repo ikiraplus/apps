@@ -163,14 +163,14 @@
     .cert-badge:hover { background:rgba(255,255,255,0.32); transform:translateY(-2px); }
     .cert-badge:active { transform:scale(0.95); transition-duration:var(--t-fast); }
     .cert-dot {
-      width:8px; height:8px; border-radius:50%; background:#4ade80;
-      box-shadow:0 0 0 0 rgba(74,222,128,0.7); flex-shrink:0;
+      width:8px; height:8px; border-radius:50%; background:#f87171;
+      box-shadow:0 0 0 0 rgba(248,113,113,0.7); flex-shrink:0;
       animation:certPulse 2s ease-in-out infinite;
     }
     @keyframes certPulse {
-      0%  { box-shadow:0 0 0 0 rgba(74,222,128,0.7); }
-      50% { box-shadow:0 0 0 5px rgba(74,222,128,0); }
-      100%{ box-shadow:0 0 0 0 rgba(74,222,128,0); }
+      0%  { box-shadow:0 0 0 0 rgba(248,113,113,0.7); }
+      50% { box-shadow:0 0 0 5px rgba(248,113,113,0); }
+      100%{ box-shadow:0 0 0 0 rgba(248,113,113,0); }
     }
     .cert-label { color:#fff; font-size:12px; font-weight:900; white-space:nowrap; }
     .cert-arrow { color:rgba(255,255,255,0.85); font-size:10px; display:inline-block; transition:transform var(--t-med) ease; }
@@ -568,9 +568,9 @@
         </a>
         <div class="cert-badge" onclick="toggleCert(this)">
           <span class="cert-dot"></span>
-          <span class="cert-label">الشهادة فعالة</span>
+          <span class="cert-label">لا يوجد شهادة</span>
           <span class="cert-arrow">▾</span>
-          <div class="cert-tooltip">يمكنك تثبيت التطبيقات</div>
+          <div class="cert-tooltip">لا يمكن تثبيت التطبيقات</div>
         </div>
       </div>
     </div>
